@@ -8,8 +8,8 @@ const fetchContacts = async () => {
   try {
     const contacts = await fs.readFile(contactsPath);
     return JSON.parse(contacts);
-  } catch (error) {
-    console.log(error.message);
+  } catch (err) {
+    console.log(err.message);
   }
 };
 
@@ -17,8 +17,8 @@ const pushContacts = async (contacts) => {
   try {
     const stringifyContacts = JSON.stringify(contacts);
     await fs.writeFile(contactsPath, stringifyContacts);
-  } catch (error) {
-    console.log(error.message);
+  } catch (err) {
+    console.log(err.message);
   }
 };
 
@@ -27,8 +27,8 @@ const listContacts = async () => {
     const contacts = await fetchContacts();
     console.table(contacts);
     return;
-  } catch (error) {
-    console.log(error.message);
+  } catch (err) {
+    console.log(err.message);
   }
 };
 
@@ -42,8 +42,8 @@ const getContactById = async (contactId) => {
     }
     console.log(element);
     return;
-  } catch (error) {
-    console.log(error.message);
+  } catch (err) {
+    console.log(err.message);
   }
 };
 
@@ -54,8 +54,8 @@ const removeContact = async (contactId) => {
     await pushContacts(newContacts);
     console.log("You removed contact successfully!".blue);
     return;
-  } catch (error) {
-    console.log(error.message);
+  } catch (err) {
+    console.log(err.message);
   }
 };
 
@@ -69,8 +69,9 @@ const addContact = async (name, email, phone) => {
       `You added new contact (${JSON.stringify(newContact)}) successfully!`
         .brightGreen
     );
-  } catch (error) {
-    console.log(error.message);
+    return;
+  } catch (err) {
+    console.log(err.message);
   }
 };
 
