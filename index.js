@@ -27,10 +27,10 @@ const invokeAction = ({ action, id, name, email, phone }) => {
       getContactById(id);
       break;
     case "add":
-      addContact(id);
+      addContact(name, email, phone);
       break;
     case "remove":
-      removeContact(name, email, phone);
+      removeContact(id);
       break;
     default:
       console.warn("\x1B[31m Unknown action type!");
